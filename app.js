@@ -11,7 +11,7 @@ server.connection({						// establishing server connection
 var fiboSeries = function(number,next){ // function to calculate fibonacci series until the required element
 	var counter;
 	var sequence = [];					// array to store the computed fibonacci series
-	sequence[0] = 0; 
+	sequence[0] = 1; 
 	sequence[1] = 1;
 	for(counter=2;counter<number;counter++){
 		var nextTerm = sequence[counter-1] + sequence[counter-2];
@@ -45,9 +45,6 @@ server.register([require('vision'), Inert],function(err){
 					throw err;
 				}
 				else{
-					console.log("result :"+result);
-					console.log("result.value :"+result.value);
-					console.log("result.sequence :"+result.sequence);
 					reply(result); 				
 				}
 			});			
@@ -55,7 +52,7 @@ server.register([require('vision'), Inert],function(err){
 		config: {
         	validate: {					//validation of the input
             	payload: {
-                	number: Joi.number().integer().min(2).max(1000).default(2)
+                	number: Joi.number().integer().min(1).max(10000).default(1)
             	}
         	}
     	}
